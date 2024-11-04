@@ -27,3 +27,6 @@ replay_pid*
 /build
 /nbproject/private
 /nbproject
+/build/classes/GUI
+/build/classes
+/build

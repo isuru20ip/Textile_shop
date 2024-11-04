@@ -12,7 +12,9 @@ public class UserManagementPanal extends javax.swing.JPanel {
 
     public UserManagementPanal() {
         initComponents();
-        loardUser();
+              loardUser("SELECT * FROM `user` "
+                + "INNER JOIN `user_status` ON user_status.id = user.user_status_id "
+                + "INNER JOIN `user_type` ON user_type.id = user.user_type_id");
         loardType();
         loardState();
     }
@@ -52,6 +54,12 @@ public class UserManagementPanal extends javax.swing.JPanel {
         jLabel2.setText("First Name");
 
         jLabel3.setText("Last Name");
+
+        mobile.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                mobileKeyReleased(evt);
+            }
+        });
 
         jLabel4.setText("Mobile");
 
@@ -226,6 +234,10 @@ public class UserManagementPanal extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jTable1MouseClicked
 
+    private void mobileKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mobileKeyReleased
+        mobileSearch();
+    }//GEN-LAST:event_mobileKeyReleased
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField fname;
@@ -253,13 +265,11 @@ public class UserManagementPanal extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     // leoard use data into jtable from DB
-    private void loardUser() {
+    private void loardUser(String query) {
         try {
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
             model.setRowCount(0);
-            ResultSet rs = DB.search("SELECT * FROM `user` "
-                    + "INNER JOIN `user_status` ON user_status.id = user.user_status_id "
-                    + "INNER JOIN `user_type` ON user_type.id = user.id");
+            ResultSet rs = DB.search(query);
             while (rs.next()) {
                 Vector v = new Vector();
                 v.add(rs.getString("id"));
@@ -336,6 +346,25 @@ public class UserManagementPanal extends javax.swing.JPanel {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
+    }
+
+    private void mobileSearch() {
+        String phone = mobile.getText();
+        loardUser("SELECT * FROM `user` "
+                + "INNER JOIN `user_status` ON user_status.id = user.user_status_id "
+                + "INNER JOIN `user_type` ON user_type.id = user.user_type_id "
+                + "WHERE `mobile` LIKE '%" + phone + "%' ");
+    reset();
+    mobile.setText(phone);
+    }
+
+    private void reset() {
+     fname.setText("");
+     lname.setText("");
+     uname.setText("");
+     mobile.setText("");
+     types.setSelectedIndex(0);
+     status.setSelectedIndex(0);
     }
 
 }
