@@ -3,8 +3,6 @@ package GUI;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
@@ -16,6 +14,7 @@ public class UserManagementPanal extends javax.swing.JPanel {
         initComponents();
         loardUser();
         loardType();
+        loardState();
     }
 
     @SuppressWarnings("unchecked")
@@ -37,8 +36,9 @@ public class UserManagementPanal extends javax.swing.JPanel {
         jLabel7 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
         types = new javax.swing.JComboBox<>();
+        jLabel8 = new javax.swing.JLabel();
+        status = new javax.swing.JComboBox<>();
         jTbale = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -65,9 +65,11 @@ public class UserManagementPanal extends javax.swing.JPanel {
 
         jButton2.setText("Update");
 
-        jButton3.setText("Active");
-
         types.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jLabel8.setText("Status");
+
+        status.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -84,7 +86,6 @@ public class UserManagementPanal extends javax.swing.JPanel {
                     .addComponent(password)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
@@ -92,9 +93,11 @@ public class UserManagementPanal extends javax.swing.JPanel {
                             .addComponent(jLabel4)
                             .addComponent(jLabel5)
                             .addComponent(jLabel6)
-                            .addComponent(jLabel7))
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel8))
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(types, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(types, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(status, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -125,13 +128,15 @@ public class UserManagementPanal extends javax.swing.JPanel {
                 .addComponent(jLabel7)
                 .addGap(2, 2, 2)
                 .addComponent(types, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel8)
+                .addGap(2, 2, 2)
+                .addComponent(status, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(8, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -162,11 +167,6 @@ public class UserManagementPanal extends javax.swing.JPanel {
         jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton4MouseClicked(evt);
-            }
-        });
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
             }
         });
 
@@ -217,10 +217,7 @@ public class UserManagementPanal extends javax.swing.JPanel {
         SwingUtilities.updateComponentTreeUI(Home.jPanel2);
     }//GEN-LAST:event_jButton4MouseClicked
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
-
+    // select row in jTbake
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         getRow();
     }//GEN-LAST:event_jTable1MouseClicked
@@ -230,7 +227,6 @@ public class UserManagementPanal extends javax.swing.JPanel {
     private javax.swing.JTextField fname;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -239,6 +235,7 @@ public class UserManagementPanal extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
@@ -246,10 +243,12 @@ public class UserManagementPanal extends javax.swing.JPanel {
     private javax.swing.JTextField lname;
     private javax.swing.JTextField mobile;
     private javax.swing.JTextField password;
+    private javax.swing.JComboBox<String> status;
     private javax.swing.JComboBox<String> types;
     private javax.swing.JTextField uname;
     // End of variables declaration//GEN-END:variables
 
+    // leoard use data into jtable from DB
     private void loardUser() {
         try {
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
@@ -276,6 +275,7 @@ public class UserManagementPanal extends javax.swing.JPanel {
         }
     }
 
+    // loard User types into jComboBox
     private void loardType() {
         try {
             ResultSet re = DB.search("SELECT * FROM `user_type`");
@@ -306,8 +306,32 @@ public class UserManagementPanal extends javax.swing.JPanel {
             mobile.setText(String.valueOf(jTable1.getValueAt(rowNum, 3)));
             uname.setText(String.valueOf(jTable1.getValueAt(rowNum, 4)));
             types.setSelectedItem(jTable1.getValueAt(rowNum, 5));
+            status.setSelectedItem(jTable1.getValueAt(rowNum, 6));
         }
 
+    }
+
+    // loard user status into jCombobox
+    private void loardState() {
+
+        try {
+            ResultSet re = DB.search("SELECT * FROM `user_status`");
+
+            Vector<String> v = new Vector<>();
+            v.add("Select Type");
+            while (re.next()) {
+                v.add(re.getString("status"));
+            }
+            DefaultComboBoxModel boxModel = (DefaultComboBoxModel) status.getModel();
+            boxModel.removeAllElements();
+            boxModel.addAll(v);
+            status.setSelectedIndex(0);
+
+        } catch (ClassNotFoundException ex) {
+            ex.printStackTrace();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
     }
 
 }
