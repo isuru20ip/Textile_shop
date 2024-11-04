@@ -210,6 +210,7 @@ public class UserManagementPanal extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    // close loarded panal from dashboard
     private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
         //this.getParent().remove(this);
         Home.jPanel2.remove(this);
@@ -219,7 +220,10 @@ public class UserManagementPanal extends javax.swing.JPanel {
 
     // select row in jTbake
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        getRow();
+        // call the method in double click
+        if (evt.getClickCount() == 2) {
+            getRow();
+        }
     }//GEN-LAST:event_jTable1MouseClicked
 
 
