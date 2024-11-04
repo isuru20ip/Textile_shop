@@ -5,7 +5,7 @@ import java.sql.ResultSet;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class DB1 {
+public class DB {
 
     private static Connection connection;
 

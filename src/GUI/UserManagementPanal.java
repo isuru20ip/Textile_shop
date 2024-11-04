@@ -8,7 +8,7 @@ import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
-import modal.DB1;
+import modal.DB;
 
 public class UserManagementPanal extends javax.swing.JPanel {
 
@@ -245,7 +245,7 @@ public class UserManagementPanal extends javax.swing.JPanel {
         try {
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
             model.setRowCount(0);
-            ResultSet rs = DB1.search("SELECT * FROM `user` "
+            ResultSet rs = DB.search("SELECT * FROM `user` "
                     + "INNER JOIN `user_status` ON user_status.id = user.user_status_id "
                     + "INNER JOIN `user_type` ON user_type.id = user.id");
             while (rs.next()) {
@@ -269,7 +269,7 @@ public class UserManagementPanal extends javax.swing.JPanel {
 
     private void loardType() {
         try {
-            ResultSet re = DB1.search("SELECT * FROM `user_type`");
+            ResultSet re = DB.search("SELECT * FROM `user_type`");
 
             Vector<String> v = new Vector<>();
             v.add("Select Type");
